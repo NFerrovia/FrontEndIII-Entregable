@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 class App extends React.Component {
   constructor() {
     super();
+
+    // Inicialización de variables
     this.state = {
       contador: 0,
       seleccion: '-',
@@ -15,10 +17,12 @@ class App extends React.Component {
     };
   }
 
+  // Utilización de ciclo de vida de Montaje para darle la bienvenida al usuario.
   componentDidMount() {
     Swal.fire('¡Bienvenido!');
   }
 
+  // Utilización de ciclo de vida de Actualización para crear un historial de selecciones en un array y actualizar el State correspondiente.
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contador <= Data.length - 1) {
       if (prevState.contador !== this.state.contador) {
@@ -29,6 +33,7 @@ class App extends React.Component {
     }
   }
 
+  // La función fin se utiliza para reiniciar la pantalla al terminar la historia
   fin() {
     Swal.fire('FIN', '......¿o no?', 'question').then(() => {
       setTimeout(() => {
@@ -37,6 +42,9 @@ class App extends React.Component {
     });
   }
 
+  // Funciones llamadas al elegir una de las dos opciones respectivamente de la historia.
+  // Avanza y actualiza el estado del contador que es el índice de lo que se muestra del json dependiendo
+  // de la selección. Si detecta el final del json, llama a la función fin.
   selectA = () => {
     if (this.state.contador >= Data.length - 2) {
       return this.fin();
@@ -53,6 +61,7 @@ class App extends React.Component {
     }
   };
 
+  // idem SelectA pero con la opción B.
   selectB = () => {
     if (this.state.contador >= Data.length - 2) {
       return this.fin();
@@ -67,6 +76,8 @@ class App extends React.Component {
 
   render() {
     return (
+      // Se divide las diferentes partes de lo que se muestra en pantalla en componentes
+      // a los que se les pasan por props los datos respectivos a su funcionamiento.
       <div className="layout">
         <Cuento info={this.state.contador} />
 

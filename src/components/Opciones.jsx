@@ -4,6 +4,8 @@ import Data from '../json/data.json';
 export default class Opciones extends React.Component {
   render() {
     return (
+      // Utiliza el estado de contador en forma de props para saber que parte del json mostrar
+      // se llama a la función onClick de App a travez de props.
       <div className="containerOpciones">
         <div className="opcion">
           <button className="botones" onClick={this.props.selectA}>
